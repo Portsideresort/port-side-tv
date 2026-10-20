@@ -137,8 +137,9 @@ function renderWeek(dates) {
     card.append(poster);
     const footer = make("div", "mini-footer");
     if (index === 6) {
-      footer.classList.add("is-empty");
-      footer.setAttribute("aria-hidden", "true");
+      footer.classList.add("is-day-off");
+      footer.append(make("span", "day-off-footer-label", "ANIMATIONSTEAM"),
+        make("span", "day-off-footer-value", "HAT FREI"));
     } else {
       const image = make("img");
       image.src = asset("event-mini-disco.jpg");
