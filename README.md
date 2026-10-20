@@ -27,3 +27,5 @@ node --test tests/program.test.mjs
 Ein Push auf `main` veröffentlicht ausschließlich `dist/` über GitHub Pages.
 
 Wetterquelle: [Open-Meteo](https://open-meteo.com/).
+
+Schrift: Nunito Sans unter der SIL Open Font License; Lizenzdatei in `dist/assets/NunitoSans-OFL.txt`.
