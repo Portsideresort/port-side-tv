@@ -1,0 +1,162 @@
+{
+  "sourceRepository": "https://github.com/Portsideresort/Port-Side-Resort-",
+  "sourceFile": "script.js",
+  "sourceBlobSha": "dd25d0c5ec42314ccd848d4f0004dd2e5e068cf4",
+  "verifiedDate": "2026-10-20",
+  "timezone": "Europe/Istanbul",
+  "cycleStartDate": "2026-07-13",
+  "showTime": "21:15",
+  "showWeeks": [
+    [
+      {
+        "day": "monday",
+        "title": "Face of Africa",
+        "time": "21:15",
+        "poster": "show-week1-face-africa.jpg"
+      },
+      {
+        "day": "tuesday",
+        "title": "Bonnles",
+        "time": "21:15",
+        "poster": "show-week1-bonnles.jpg"
+      },
+      {
+        "day": "wednesday",
+        "title": "Raza Urbana",
+        "time": "21:15",
+        "poster": "show-week1-raza-urbana.jpg"
+      },
+      {
+        "day": "thursday",
+        "title": "Bingo",
+        "time": "21:15",
+        "poster": "show-week1-bingo.png"
+      },
+      {
+        "day": "friday",
+        "title": "Diva Nova",
+        "time": "21:15",
+        "poster": "show-week1-diva-nova.jpg"
+      },
+      {
+        "day": "saturday",
+        "title": "Mexico Show",
+        "time": "21:15",
+        "poster": "show-week1-mexico.jpg"
+      },
+      {
+        "day": "sunday",
+        "title": "Canlı Müzik",
+        "time": "21:15",
+        "poster": "show-sunday-live-music.jpg"
+      }
+    ],
+    [
+      {
+        "day": "monday",
+        "title": "Tropicana Show",
+        "time": "21:15",
+        "poster": "show-week2-tropicana.jpg"
+      },
+      {
+        "day": "tuesday",
+        "title": "Dark Side",
+        "time": "21:15",
+        "poster": "show-week2-dark-side.jpg"
+      },
+      {
+        "day": "wednesday",
+        "title": "Michael Jackson",
+        "time": "21:15",
+        "poster": "show-week2-michael-jackson.jpg"
+      },
+      {
+        "day": "thursday",
+        "title": "Bingo",
+        "time": "21:15",
+        "poster": "show-week2-bingo.png"
+      },
+      {
+        "day": "friday",
+        "title": "SHOW TIME",
+        "time": "21:15",
+        "poster": "show-week2-friday-show-time.jpg"
+      },
+      {
+        "day": "saturday",
+        "title": "Echoes of Mongolia",
+        "time": "21:15",
+        "poster": "show-week2-echoes-mongolia.jpg"
+      },
+      {
+        "day": "sunday",
+        "title": "Canlı Müzik",
+        "time": "21:15",
+        "poster": "show-sunday-live-music.jpg"
+      }
+    ]
+  ],
+  "activities": [
+    {
+      "time": "10:00",
+      "title": "Radio Port Side"
+    },
+    {
+      "time": "10:15",
+      "title": "Sabah Gym"
+    },
+    {
+      "time": "10:15",
+      "title": "Boccia"
+    },
+    {
+      "time": "11:00",
+      "title": "Dart"
+    },
+    {
+      "time": "11:15",
+      "title": "Deniz Gym"
+    },
+    {
+      "time": "14:30",
+      "title": "Su Gym"
+    },
+    {
+      "time": "15:00",
+      "title": "Boccia"
+    },
+    {
+      "time": "15:30",
+      "title": "Su Topu"
+    },
+    {
+      "time": "16:00",
+      "title": "Dart"
+    }
+  ],
+  "activitiesExceptSunday": true,
+  "wellness": {
+    "time": "08:00",
+    "title": "Aqua Yoga",
+    "location": "Kapalı Havuz",
+    "reservationRequired": true,
+    "contact": "Animatör Olga",
+    "exceptSunday": true
+  },
+  "miniDisco": {
+    "time": "20:30",
+    "location": "Sahne",
+    "exceptSunday": true
+  },
+  "currentSpecialEvent": {
+    "date": "2026-10-23",
+    "weekIndex": 0,
+    "dayIndex": 4,
+    "title": "Oktoberfest",
+    "timeLabel": "Akşam",
+    "location": "Havuz Alanı",
+    "poster": "event-oktoberfest-2026.jpg",
+    "replaces": "Diva Nova"
+  },
+  "plannedDailyRefresh": "22:30"
+}

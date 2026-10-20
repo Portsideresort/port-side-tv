@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#001327">
+  <meta name="description" content="Das aktuelle Animationsprogramm des Port Side Resort Hotels: Tagesaktivitäten, Abendshows und Wetter auf einen Blick.">
+  <title>Animationsprogramm · Port Side Resort Hotel</title>
+  <link rel="icon" type="image/png" href="./assets/port-side-logo.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="screen" id="screen" aria-label="Animationsprogramm Port Side Resort Hotel">
+    <header class="topbar">
+      <div class="brand"><img src="./assets/port-side-logo.png" alt="Port Side Resort Hotel" width="594" height="420"></div>
+      <div class="page-heading">
+        <h1>ANIMATIONSPROGRAMM</h1>
+        <p id="week-range">WOCHENPROGRAMM</p>
+      </div>
+      <div class="weather" aria-label="Wetter in Side">
+        <span id="weather-icon" class="weather-icon" aria-hidden="true">☀</span>
+        <span id="weather-temp" class="weather-temp">—°</span>
+        <span id="weather-condition" class="weather-condition">WETTER WIRD GELADEN</span>
+      </div>
+      <p id="current-date" class="current-date"></p>
+    </header>
+
+    <section class="main-panels" aria-label="Heutiges Programm">
+      <article class="hero panel" id="hero-panel">
+        <img id="hero-poster" class="hero-poster" alt="" fetchpriority="high">
+        <div class="hero-shade"></div>
+        <div class="hero-copy">
+          <p class="evening-label">HEUTE ABEND <span></span></p>
+          <h2 id="hero-title" class="sr-only">PORT SIDE</h2>
+          <p id="hero-time" class="hero-time"></p>
+          <p id="hero-location" class="sr-only">THEATER</p>
+        </div>
+      </article>
+
+      <section class="daytime panel" aria-labelledby="daytime-heading">
+        <h2 id="daytime-heading">HEUTE <span>•</span> TAGSÜBER</h2>
+        <div class="activity-list" id="activities"></div>
+        <p class="wellness-note" id="wellness-note"></p>
+      </section>
+    </section>
+    <a class="weather-credit" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Wetter: Open-Meteo</a>
+
+    <section class="weekly" aria-labelledby="weekly-heading">
+      <div class="section-line"><h2 id="weekly-heading">WOCHENPROGRAMM</h2><span></span></div>
+      <div class="week-grid" id="week-grid"></div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var screen = document.getElementById('screen');
+      function fitScreen() {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var scale = Math.min(width / 1920, height / 1080);
+        screen.style.transform = 'translate(' + ((width - 1920 * scale) / 2) + 'px,' + ((height - 1080 * scale) / 2) + 'px) scale(' + scale + ')';
+      }
+      window.addEventListener('resize', fitScreen);
+      document.addEventListener('fullscreenchange', fitScreen);
+      fitScreen();
+      function fullScreen() {
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        }
+      }
+      screen.addEventListener('dblclick', fullScreen);
+      document.addEventListener('keydown', function (event) { if (event.key.toLowerCase() === 'f') fullScreen(); });
+    }());
+  </script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
