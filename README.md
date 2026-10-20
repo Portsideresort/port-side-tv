@@ -4,7 +4,7 @@
 
 Die Anzeige enthält das aktuelle Tagesprogramm, die Show des Abends, die laufende Programmwoche und das Wetter in Side. Alle Oberflächentexte sind Deutsch. Die beiden Programmwochen wechseln ab dem 13. Juli 2026 automatisch. Sonntags finden keine Tagesaktivitäten und keine Mini-Disco statt; die Abendshow bleibt sichtbar.
 
-Die Datumsauswahl folgt `Europe/Istanbul`. Um 22:30 Uhr wird die Seite einmal neu geladen. Um Mitternacht wechselt die Anzeige ohne vollständiges Neuladen auf den neuen Kalendertag. Die Wetterdaten werden alle 30 Minuten von Open-Meteo aktualisiert.
+Die Datumsauswahl folgt `Europe/Istanbul`. Jeden Abend um 22:30 Uhr wechselt die gesamte Anzeige auf das Programm des nächsten Tages und die Seite wird einmal neu geladen. Auch beim Öffnen nach 22:30 Uhr erscheint bereits das nächste Tagesprogramm. Um Mitternacht bleibt dieses Programm bestehen. Die Wetterdaten werden alle 30 Minuten von Open-Meteo aktualisiert.
 
 ## Lokal öffnen
 

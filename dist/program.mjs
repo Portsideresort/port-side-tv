@@ -52,9 +52,13 @@ export function getIstanbulDateParts(value = new Date()) {
     weekday: new Date(Date.UTC(year, month - 1, day)).getUTCDay() };
 }
 
-/** The display always follows the actual Istanbul calendar day. */
+/** At 22:30 Istanbul time, display tomorrow; explicit civil dates stay fixed for previews. */
 export function getDisplayDate(value = new Date()) {
-  return dateKeyFor(value);
+  if (parseDateKey(value)) return value;
+  const parts = getIstanbulDateParts(value);
+  const afterCutoff = parts.hour > 22 || (parts.hour === 22 && parts.minute >= 30);
+  if (!afterCutoff) return parts.dateKey;
+  return new Date(Date.UTC(parts.year, parts.month - 1, parts.day + 1)).toISOString().slice(0, 10);
 }
 
 export function getProgrammePosition(value, cycleStartDate = "2026-07-13") {

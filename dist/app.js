@@ -5,7 +5,7 @@ import {
   getShowForDate,
   getWeekDates,
   millisecondsUntilRefresh
-} from "./program.mjs";
+} from "./program.mjs?v=20261020-2230";
 
 const byId = id => document.getElementById(id);
 const asset = name => new URL(`./assets/${encodeURIComponent(name)}`, import.meta.url).href;
@@ -186,7 +186,7 @@ function scheduleRefresh(now = new Date()) {
 
 function checkDailyState() {
   const now = new Date();
-  // Midnight changes only the visible programme; the page itself reloads at 22:30.
+  // Roll the programme forward at 22:30, before reloading the page.
   if (!previewDate && renderedDate !== getDisplayDate(now)) renderProgramme(getDisplayDate(now));
   if (reloadStarted || now.getTime() < refreshAt) return;
   const boundaryKey = getIstanbulDateParts(new Date(refreshAt)).dateKey;

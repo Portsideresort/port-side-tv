@@ -46,22 +46,73 @@ test('Istanbul date parts cross midnight at 21:00 UTC', () => {
   );
 });
 
-test('the displayed date changes at Istanbul midnight', () => {
-  assert.equal(getDisplayDate(new Date('2026-10-20T20:59:59Z')), '2026-10-20');
-  assert.equal(getDisplayDate(new Date('2026-10-20T21:00:00Z')), '2026-10-21');
+test('the displayed programme switches to tomorrow at exactly Istanbul 22:30', () => {
+  const cases = [
+    ['2026-10-20T19:29:59.999Z', '2026-10-20', 'Bonnles'],
+    ['2026-10-20T19:30:00.000Z', '2026-10-21', 'Raza Urbana'],
+    ['2026-10-20T20:14:00.000Z', '2026-10-21', 'Raza Urbana'],
+  ];
+  for (const [instant, expectedDate, expectedShow] of cases) {
+    const displayDate = getDisplayDate(new Date(instant));
+    assert.equal(displayDate, expectedDate, instant);
+    assert.equal(getShowForDate(programme, displayDate).title, expectedShow, instant);
+  }
 });
 
-test('the 22:30 refresh does not advance the displayed date or show', () => {
+test('Istanbul midnight keeps the programme already selected at 22:30', () => {
   for (const instant of [
-    '2026-10-20T19:29:59Z',
-    '2026-10-20T19:30:00Z',
-    '2026-10-20T19:30:01Z',
     '2026-10-20T20:59:59Z',
+    '2026-10-20T21:00:00Z',
+    '2026-10-21T19:29:00Z',
   ]) {
     const displayDate = getDisplayDate(new Date(instant));
-    assert.equal(displayDate, '2026-10-20', instant);
-    assert.equal(getShowForDate(programme, displayDate).title, 'Bonnles', instant);
+    assert.equal(displayDate, '2026-10-21', instant);
+    assert.equal(getShowForDate(programme, displayDate).title, 'Raza Urbana', instant);
   }
+  const nextEvening = getDisplayDate(new Date('2026-10-21T19:30:00Z'));
+  assert.equal(nextEvening, '2026-10-22');
+  assert.equal(getShowForDate(programme, nextEvening).title, 'Bingo');
+});
+
+test('Sunday at 22:30 switches to the next programme week and Monday show', () => {
+  const displayDate = getDisplayDate(new Date('2026-10-25T19:30:00Z'));
+  assert.equal(displayDate, '2026-10-26');
+  const show = getShowForDate(programme, displayDate);
+  assert.equal(show.title, 'Tropicana Show');
+  assert.equal(show.weekIndex, 1);
+  assert.equal(show.dayIndex, 0);
+  assert.deepEqual(getWeekDates(displayDate), [
+    '2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29',
+    '2026-10-30', '2026-10-31', '2026-11-01',
+  ]);
+});
+
+test('Saturday at 22:30 selects Sunday live music and the Sunday day index', () => {
+  const displayDate = getDisplayDate(new Date('2026-10-24T19:30:00Z'));
+  assert.equal(displayDate, '2026-10-25');
+  const show = getShowForDate(programme, displayDate);
+  assert.equal(show.title, 'Canlı Müzik');
+  assert.equal(show.poster, 'show-sunday-live-music.jpg');
+  assert.equal(show.dayIndex, 6);
+});
+
+test('the 22:30 programme cutoff handles month and year boundaries', () => {
+  for (const [instant, expectedDate] of [
+    ['2026-10-31T19:29:59.999Z', '2026-10-31'],
+    ['2026-10-31T19:30:00.000Z', '2026-11-01'],
+    ['2026-12-31T19:29:59.999Z', '2026-12-31'],
+    ['2026-12-31T19:30:00.000Z', '2027-01-01'],
+  ]) {
+    assert.equal(getDisplayDate(new Date(instant)), expectedDate, instant);
+  }
+});
+
+test('explicit YYYY-MM-DD preview dates remain fixed', () => {
+  for (const date of ['2026-10-20', '2026-10-23', '2026-10-31', '2026-12-31']) {
+    assert.equal(getDisplayDate(date), date);
+  }
+  assert.equal(getShowForDate(programme, getDisplayDate('2026-10-20')).title, 'Bonnles');
+  assert.equal(getShowForDate(programme, getDisplayDate('2026-10-23')).title, 'Oktoberfest');
 });
 
 test('the displayed week runs from Monday 19 to Sunday 25 October', () => {
